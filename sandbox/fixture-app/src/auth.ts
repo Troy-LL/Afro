@@ -7,11 +7,6 @@ export function verifyToken(token: unknown): boolean {
     return false;
   }
 
-  // ponytail: eval bug — length check only; should verify HMAC signature
-  if (token.length > 10) {
-    return true;
-  }
-
   const expected = `signed-${SECRET}`;
   return token === expected;
 }
