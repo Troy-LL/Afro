@@ -1,0 +1,186 @@
+---
+description: >-
+  Routes every prompt: word-count + complexity heuristics, QA gate on mismatch,
+  poteto default for real work, ponytail for trivial. Override with quick/poteto/both.
+alwaysApply: true
+---
+
+# Agent workflow — Poteto default, Ponytail fallback, QA gate
+
+## Harness (reference library)
+
+**Path:** `.cursor/harness/README.md`
+
+This MDC is the **router** (classify → gate → execute). Procedures live in the harness — read the index before review, audit, debt scan, or ladder sync. Do not invent ponytail-review/audit behavior from memory.
+
+| Task | Load |
+|------|------|
+| Over-engineering review (diff) | `.cursor/harness/skills/review.md` |
+| Repo bloat audit | `.cursor/harness/skills/audit.md` |
+| `ponytail:` debt ledger | `.cursor/harness/skills/debt.md` |
+| Canonical ladder wording | `.cursor/harness/ladder.md` |
+| Full poteto playbooks | poteto-mode SKILL.md (path in harness README) |
+| Upstream sync / examples | `.cursor/harness/upstream.md` → `ponytail/` clone |
+| Find / install skills (skills.sh) | `.cursor/harness/skills/find-skills.md` |
+| Curated skills for this stack | `.cursor/harness/skills/RECOMMENDED.md` |
+
+## Skills scope (local only)
+
+**Use only skills under this workspace's `.agents/skills/`.** Do not load, cite, or install from global paths (`~/.cursor/skills/`, `npx skills add -g`). Harness adapters live in `.cursor/harness/skills/`.
+
+**Exceptions (explicit user invoke only):** `/poteto-mode` and other plugin skills the user names in the prompt — not the global Agents-tab catalog from other projects.
+
+Install template (from repo root): `npx skills add <owner/repo@skill> -y --agent cursor`
+
+---
+
+## Your knobs (edit this block)
+
+| Setting | Value | Notes |
+|---------|-------|-------|
+| **Default** | `auto` | `auto` · `poteto` · `ponytail` · `both` |
+| **Short prompt (words)** | `80` | At or under → lean **ponytail** if complexity also low |
+| **Long prompt (words)** | `200` | At or over → lean **poteto** if complexity also high |
+| **QA gate** | `on` | `on` = ask when word count and complexity disagree; `off` = pick safer route silently |
+| **Gate once per thread** | `on` | After user picks a mode, don't re-gate unless scope clearly escalates |
+
+Count words in the **user's latest message only** (not agent replies). Attachments, pasted logs, or `@`-files add **complexity weight** but do not inflate the word count.
+
+**Forced defaults (skip gate):** `poteto` / `ponytail` / `both` in the table bypass classification.
+
+**User overrides in prompt (win over everything):**
+
+| Say | Effect |
+|-----|--------|
+| `quick`, `ponytail only`, `just fix it` | Ponytail-only, no gate |
+| `poteto`, `/poteto-mode`, `full process` | Full poteto, no gate |
+| `both`, `full stack` | Poteto + ladder, no gate |
+| `auto` | Re-run classification + gate if needed |
+
+---
+
+## Step 0 — Score (every prompt, before tools)
+
+Run these two checks first. Do not spawn subagents or open playbooks until routing is settled.
+
+### A. Word band
+
+| Band | Condition |
+|------|-----------|
+| **short** | ≤ Short prompt words |
+| **mid** | between Short and Long |
+| **long** | ≥ Long prompt words |
+
+### B. Complexity (content, not length)
+
+**Low** — all plausible:
+
+- One file or one obvious location; single action (typo, rename, bump version, tweak string/constant)
+- No bug/perf/root-cause, no new feature, no refactor, no architecture, no multi-step plan
+- Answerable without investigation playbook
+
+**High** — any of:
+
+- Multi-file or unknown blast radius
+- Bug, perf, investigation, refactor, migration, new feature, tests/CI/PR
+- Design fork, "how/why should", autonomous/long-running, verify-before-ship
+- Large paste, stack trace, or `@`-attached codebase context
+
+**Mid** — neither clearly low nor high (default when unsure).
+
+---
+
+## Step 1 — Route matrix (no gate)
+
+When word band and complexity **agree**, act immediately — no question.
+
+| Word band | Complexity | Route |
+|-----------|------------|-------|
+| short | low | **Ponytail-only** |
+| long | high | **Poteto** (+ ladder at implementation) |
+| mid | low | **Ponytail-only** |
+| mid | high | **Poteto** |
+| short | high | → **Gate** (mismatch) |
+| long | low | → **Gate** (mismatch) |
+| mid | mid | → **Gate** (ambiguous) |
+
+User override words or non-`auto` Default → skip matrix; use forced mode.
+
+---
+
+## Step 2 — QA gate (mismatch or ambiguous)
+
+When **QA gate** is `on` and matrix says **Gate**, use **AskQuestion once** before other work. One short sentence of reasoning, then the question.
+
+**Short + high complexity** (~N words, but looks hard):
+
+> Prompt is short (~N words) but looks non-trivial (reason). How should I run this?
+
+Options:
+
+1. **Poteto** — full playbooks, verification, subagents as needed *(safer)*
+2. **Both** — poteto process + ponytail ladder on every edit *(rigorous + minimal diff)*
+3. **Ponytail only** — ladder, no playbook ceremony *(fastest; you accept less process)*
+
+**Long + low complexity** (~N words, but looks simple):
+
+> Prompt is long (~N words) but looks like a small change (reason). How should I run this?
+
+Same three options (order unchanged; default recommendation in text: **Both** if they pasted context for a small fix, **Ponytail only** if it's truly one obvious edit).
+
+**Mid + mid** (ambiguous):
+
+> Scope is unclear (~N words). Pick a workflow?
+
+Same three options; lean recommendation: **Both** unless user said "quick" anywhere.
+
+If **QA gate** is `off`, pick silently: short+high → **Poteto**; long+low → **Both**; mid+mid → **Poteto**.
+
+If user dismisses or ignores the question, default to **Poteto** (safer).
+
+---
+
+## Step 3 — Execute chosen path
+
+### Ponytail-only
+
+Skip poteto playbooks and todolist. Run the **ladder** (below) and ship.
+
+### Poteto
+
+1. Read **poteto-mode** SKILL.md (Principles + matched playbook).
+2. Follow playbook steps; poteto owns subagents, verification, reply style.
+3. Run the **ladder** at implementation unless user chose ponytail-only at the gate.
+
+### Both
+
+Full poteto path + **ladder on every production code touch**.
+
+---
+
+## The ponytail ladder (implementation)
+
+1. Does this need to exist? → skip (YAGNI)
+2. Stdlib? → use it
+3. Native platform? → use it
+4. Already-installed dep? → use it
+5. One line? → one line
+6. Minimum that works
+
+- No new deps if avoidable. No unrequested abstractions. Deletion over addition.
+- Shortcuts: `ponytail:` comment with ceiling + upgrade path.
+- **Poteto wins over ladder for:** reproduce-before-fix, tiny throwaway prototypes, architect/interrogate, experience-first UX, build-the-lever scripts.
+- **Never lazy on:** trust-boundary validation, data-loss errors, security, accessibility, explicit requests.
+- **Proof:** poteto **Prove It Works** on poteto/both paths; ponytail-only → one smallest runnable check for non-trivial logic.
+
+---
+
+## Gate examples
+
+| Prompt | Words | Complexity | Result |
+|--------|------:|------------|--------|
+| "fix typo line 12" | ~4 | low | Ponytail-only, no gate |
+| "Add OAuth, refresh tokens, PKCE, tests, migrate users…" (+ long spec) | 250+ | high | Poteto, no gate |
+| "fix auth" | ~2 | high | **Gate** — short but vague/high blast radius |
+| 400-word paste + "just change the button color to blue" | long | low | **Gate** — long but simple ask |
+| "refactor utils" | ~2 | mid | **Gate** — ambiguous |
