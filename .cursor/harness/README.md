@@ -17,11 +17,7 @@ Read this file when you need a skill, audit procedure, or canonical wording — 
 | Find / install ecosystem skills | `skills/find-skills.md` → `.agents/skills/find-skills/` |
 | Curated install list | `skills/RECOMMENDED.md` |
 | Local skills policy | `.agents/README.md` |
-| Eval runbook (Method A) | `TEST-RUNBOOK.md` |
-| Long+low gate prompt (test #6) | `prompts/test-06-long-low.md` |
-| Upstream ponytail (sync only) | `upstream.md` → `ponytail/` clone |
-| Eval fixture app | `../../sandbox/fixture-app/` |
-| Sandbox index | `../../sandbox/README.md` |
+| Upstream ponytail (sync only) | `upstream.md` → optional local `ponytail/` clone |
 
 ## Ponytail skills (simplicity layer)
 

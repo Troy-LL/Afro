@@ -79,7 +79,7 @@ Poteto path + ladder on every production code touch.
 | Prompt | Words | Complexity | Result |
 |--------|------:|------------|--------|
 | fix typo in README | ~4 | low | Ponytail-only |
-| fix auth in sandbox/fixture-app — tests fail | ~12 | high | **Gate** (path does not exempt) |
-| refactor utils in fixture-app/src/utils.ts | ~12 | high | **Gate** |
+| fix auth — tests fail on verifyToken | ~8 | high | **Gate** (path does not exempt) |
+| refactor utils in src/utils.ts | ~8 | high | **Gate** |
 | 220-word standup paste + one-line ladder edit | long | low | **Gate** |
 | long feature spec | 250+ | high | Poteto, no gate |
