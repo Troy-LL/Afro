@@ -8,7 +8,7 @@ Copy `.cursor/` and `.agents/` into a project (or open this repo as the workspac
 
 | Path | Role |
 |------|------|
-| `.cursor/rules/ponytail.mdc` | Always-on router — classify, gate, route |
+| `.cursor/rules/afro.mdc` | Always-on router — classify, gate, route |
 | `.cursor/harness/knobs.md` | Tunable thresholds (word bands, QA gate) |
 | `.cursor/harness/router.md` | Routing matrix and execution tiers |
 | `.cursor/harness/ladder.md` | Implementation ladder (YAGNI → minimum that works) |
@@ -28,7 +28,7 @@ Edit **`.cursor/harness/knobs.md`** — short/long word bands, QA gate on/off, d
 | `poteto`, `/poteto-mode` | Full poteto playbooks |
 | `both`, `full stack` | Poteto + ladder on every edit |
 
-Every agent reply starts with `Route: …` — see `ponytail.mdc`.
+Every agent reply starts with `Route: …` — see `afro.mdc`.
 
 ## Upstream
 

@@ -1,6 +1,6 @@
 # Router — classify, gate, execute
 
-The always-on rule (`.cursor/rules/ponytail.mdc`) points here for details.
+The always-on rule (`.cursor/rules/afro.mdc`) points here for details.
 
 ## A. Word band
 
@@ -61,7 +61,7 @@ If gate is `off`: short+high → Poteto; long+low → Both; mid+mid → Poteto.
 ### Ponytail-only
 
 - No poteto playbooks or todolist.
-- **Trivial cap:** ≤3 **task** tools before edit (read target → optional one grep → edit). Reads of `ponytail.mdc`, `knobs.md`, and `router.md` for classification do **not** count. No runbook/git dig unless edit requires it.
+- **Trivial cap:** ≤3 **task** tools before edit (read target → optional one grep → edit). Reads of `afro.mdc`, `knobs.md`, and `router.md` for classification do **not** count. No runbook/git dig unless edit requires it.
 - Ladder: `ladder.md`. Proof: one smallest check if non-trivial.
 
 ### Poteto

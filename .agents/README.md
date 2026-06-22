@@ -25,7 +25,7 @@ npx skills add <owner/repo@skill> -y --agent cursor
 - `npx skills add ... -g`
 - `npx skills update -g`
 
-The router (`.cursor/rules/ponytail.mdc`) forbids loading skills outside this tree unless the user explicitly invokes a plugin skill (e.g. `/poteto-mode`).
+The router (`.cursor/rules/afro.mdc`) forbids loading skills outside this tree unless the user explicitly invokes a plugin skill (e.g. `/poteto-mode`).
 
 ## Installed
 

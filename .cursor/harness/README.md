@@ -1,6 +1,6 @@
 # Agent harness — reference index
 
-Context library for this workspace. The router lives in `.cursor/rules/ponytail.mdc` (short); details in `router.md` and `knobs.md`.
+Context library for this workspace. The router lives in `.cursor/rules/afro.mdc` (short); details in `router.md` and `knobs.md`.
 Read this file when you need a skill, audit procedure, or canonical wording — don't guess.
 
 ## When to open what
@@ -31,6 +31,6 @@ Read this file when you need a skill, audit procedure, or canonical wording — 
 ## Maintenance
 
 - **Knobs:** `knobs.md` only (not the MDC).
-- **Router logic:** `router.md` + slim `ponytail.mdc`.
+- **Router logic:** `router.md` + slim `afro.mdc`.
 - **Ladder:** sync with `ponytail/skills/ponytail/SKILL.md` when upstream updates.
 

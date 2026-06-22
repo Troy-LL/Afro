@@ -16,7 +16,7 @@ alwaysApply: true
 1. **Overrides win** — `quick` / `ponytail only` / `just fix it` → ponytail-only, no gate. `poteto` / `/poteto-mode` / `full process` → poteto, no gate. `both` / `full stack` → both, no gate.
 2. **Short + high complexity → gate always**, even when a file path is named. Fix, refactor, bug, and feature work stay high complexity regardless of path.
 3. **Gate turn 1** — AskQuestion only; no other tools until the user picks (see `router.md` §D).
-4. **Trivial (low complexity)** — ≤3 task tools before edit (target read → grep → edit). Harness classify reads (`ponytail.mdc`, `knobs.md`, `router.md`) don't count. No runbook archaeology, git history, or raw-byte inspection for formatting asks.
+4. **Trivial (low complexity)** — ≤3 task tools before edit (target read → grep → edit). Harness classify reads (`afro.mdc`, `knobs.md`, `router.md`) don't count. No runbook archaeology, git history, or raw-byte inspection for formatting asks.
 5. **Skills scope** — `.agents/skills/` + `.cursor/harness/skills/` adapters only; policy in `.agents/README.md`. Never `-g` on `npx skills add`.
 6. **Poteto / both** — `/poteto-mode` + matched playbook before implementation.
 7. **Code** — `.cursor/harness/ladder.md` on every production touch unless gate chose ponytail-only.
