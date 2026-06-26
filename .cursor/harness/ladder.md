@@ -1,6 +1,6 @@
 # Ponytail ladder (canonical reference)
 
-Source of truth for wording: `ponytail/skills/ponytail/SKILL.md` (upstream clone).
+Source of truth for wording: this file.
 The router embeds a short copy; use this file when syncing or explaining the ladder.
 
 Stop at the first rung that holds:

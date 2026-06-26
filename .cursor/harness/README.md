@@ -1,7 +1,7 @@
 # Agent harness — reference index
 
 Context library for this workspace. The router lives in `.cursor/rules/afro.mdc` (short); details in `router.md` and `knobs.md`.
-Read this file when you need a skill, audit procedure, or canonical wording — don't guess.
+Read this file when you need the active local procedure or canonical wording.
 
 ## When to open what
 
@@ -9,28 +9,18 @@ Read this file when you need a skill, audit procedure, or canonical wording — 
 |-------------|------|
 | Route / classify / QA gate | `router.md` + `knobs.md` |
 | Tune thresholds | `knobs.md` |
-| Full workflow, playbooks, subagents | Invoke **`/poteto-mode`** (pstack skill) |
+| Full workflow / subagents | `router.md` §E |
 | Canonical ponytail ladder | `ladder.md` |
-| Review diff for over-engineering | `/review` or `skills/review.md` |
-| Audit whole repo for bloat | `skills/audit.md` |
-| List `ponytail:` deferred shortcuts | `skills/debt.md` |
-| Find / install ecosystem skills | `skills/find-skills.md` → `.agents/skills/find-skills/` |
-| Curated install list | `skills/RECOMMENDED.md` |
-| Local skills policy | `.agents/README.md` |
 | Upstream ponytail (sync only) | `upstream.md` → optional local `ponytail/` clone |
+| Session state, prompt count, context age | `reference/metrics/state.md` → `reference/AGENT.md` |
 
-## Ponytail skills (simplicity layer)
+## Not active
 
-| Invoke | Trigger phrases | Procedure |
-|--------|-----------------|-----------|
-| `/review` | review, over-engineered, simplify review | `skills/review.md` |
-| (chat) | audit codebase, find bloat | `skills/audit.md` |
-| (chat) | ponytail debt, list shortcuts | `skills/debt.md` |
-| (chat) | find a skill, skills.sh | `skills/find-skills.md` |
+External adapters and project-local install packs are not part of the active harness. Track future work in `../../../Futures/` from this folder.
 
 ## Maintenance
 
 - **Knobs:** `knobs.md` only (not the MDC).
 - **Router logic:** `router.md` + slim `afro.mdc`.
-- **Ladder:** sync with `ponytail/skills/ponytail/SKILL.md` when upstream updates.
+- **Ladder:** keep `ladder.md` local and testable.
 

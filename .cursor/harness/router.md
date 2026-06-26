@@ -60,16 +60,16 @@ If gate is `off`: short+high → Poteto; long+low → Both; mid+mid → Poteto.
 
 ### Ponytail-only
 
-- No poteto playbooks or todolist.
+- No Poteto process or todolist.
 - **Trivial cap:** ≤3 **task** tools before edit (read target → optional one grep → edit). Reads of `afro.mdc`, `knobs.md`, and `router.md` for classification do **not** count. No runbook/git dig unless edit requires it.
 - **Gated fixtures:** tool counting for the ponytail cap starts **after** the user answers the gate — turn 1 is excluded entirely.
 - Ladder: `ladder.md`. Proof: one smallest check if non-trivial.
 
 ### Poteto
 
-1. Invoke **`/poteto-mode`** — read that skill and the matched playbook before coding.
-2. Follow playbook; poteto owns verification and subagents.
-3. Ladder at implementation unless user chose ponytail-only at gate.
+1. Use the fuller local process: gather enough context, make a short plan when scope is unclear, and use subagents when parallel exploration or verification helps.
+2. Apply `ladder.md` at implementation unless the user chose ponytail-only at gate.
+3. Verify the real path affected by the change before final response.
 
 ### Both
 

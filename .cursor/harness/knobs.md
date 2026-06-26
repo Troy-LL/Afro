@@ -14,4 +14,4 @@ Count words in the **user's latest message only**. Attachments and `@`-files add
 
 **Forced default** (not `auto`) skips classification and gate.
 
-**Overrides in prompt** (win over everything): `quick` · `ponytail only` · `just fix it` · `poteto` · `/poteto-mode` · `full process` · `both` · `full stack` · `auto`
+**Overrides in prompt** (win over everything): `quick` · `ponytail only` · `just fix it` · `poteto` · `full process` · `both` · `full stack` · `auto`
