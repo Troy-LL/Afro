@@ -5,3 +5,6 @@ dist/
 
 # Upstream reference clone (large; not part of this harness)
 ponytail/
+
+# Reference runtime state (regenerated each session; AI-only)
+reference/metrics/
