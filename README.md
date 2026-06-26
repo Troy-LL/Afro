@@ -34,4 +34,4 @@ Ponytail reference sync: `.cursor/harness/upstream.md` (optional local `ponytail
 
 ## Futures
 
-External integration packs are intentionally not part of the active harness. Track them outside `Afro/` in `../Futures/` until they have a routable, testable design.
+External integration packs are intentionally not part of the active harness. Track them outside `Afro/` in `../afro-development/Futures/` until they have a routable, testable design.

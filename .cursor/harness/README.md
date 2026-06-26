@@ -16,7 +16,7 @@ Read this file when you need the active local procedure or canonical wording.
 
 ## Not active
 
-External adapters and project-local install packs are not part of the active harness. Track future work in `../../../Futures/` from this folder.
+External adapters and project-local install packs are not part of the active harness. Track future work in `../../../afro-development/Futures/` from this folder.
 
 ## Maintenance
 
