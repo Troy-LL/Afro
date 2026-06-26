@@ -48,7 +48,7 @@ When bands **agree**, route silently (no gate). Overrides or non-`auto` default 
 
 When `QA gate` is `on` in `knobs.md` and matrix says **Gate**:
 
-1. **Turn 1:** AskQuestion only — no Read, Grep, Shell, or subagents until the user answers.
+1. **Turn 1:** AskQuestion only — no Read, Grep, Shell, SemanticSearch, or subagents until the user answers. Do not read pasted content, `@`-attached files, or repo paths on turn 1; classify from the user's message text and harness docs only.
 2. One sentence why (~N words + complexity reason).
 3. Options: **Poteto** · **Both** · **Ponytail only** (same order always).
 4. **Gate once per thread** unless scope clearly escalates.
@@ -62,6 +62,7 @@ If gate is `off`: short+high → Poteto; long+low → Both; mid+mid → Poteto.
 
 - No poteto playbooks or todolist.
 - **Trivial cap:** ≤3 **task** tools before edit (read target → optional one grep → edit). Reads of `afro.mdc`, `knobs.md`, and `router.md` for classification do **not** count. No runbook/git dig unless edit requires it.
+- **Gated fixtures:** tool counting for the ponytail cap starts **after** the user answers the gate — turn 1 is excluded entirely.
 - Ladder: `ladder.md`. Proof: one smallest check if non-trivial.
 
 ### Poteto
